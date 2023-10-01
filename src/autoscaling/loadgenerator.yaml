@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: load-generator
+  labels:
+    app: load
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: load
+  template:
+    metadata:
+      labels:
+        app: load
+    spec:
+      containers:
+      - command:
+            - "/bin/sh"
+            - "-c"
+            - "while true; do wget -q -O /dev/null django; done"
+        name: load
+        image: busybox

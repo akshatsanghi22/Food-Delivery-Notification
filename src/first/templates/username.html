@@ -1,0 +1,466 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        .centered-text {
+            text-align: center;
+        }
+    </style>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #a33e3e;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .user-container {
+                 max-width: 600px;
+                 margin: 100px auto; /* Adjust the margin for centering */
+                 background-color: #007bff; /* Blue background color */
+                 border: 1px solid #ddd;
+                 border-radius: 5px;
+                 padding: 20px;
+                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                 color: #fff; /* White text color */
+         }
+
+        .user-info {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        .save-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .saved-info {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .links-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .link {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .link:hover {
+            color: #4CAF50;
+        }
+    </style>
+
+    
+</head>
+<body>
+    <header>
+        <h1>User Profile</h1>
+    </header>
+    
+
+        <title>User Registration</title>
+    
+</head>
+<body style="background-color:#347937;">
+    <div class="centered-text">
+
+        <h1>User Registration</h1>
+</div>
+    <div class="user-container">
+        <div class="user-info">
+
+            
+            <form method="post" action="{% url 'username' %}">
+                {% csrf_token %}
+                <label class="form-label" for="name">Name:</label>
+                <input class ="form-label" type="text" id="name" name="name" required>
+                
+                <label class="form-label" for="Email">Email:</label>
+                <input class ="form-label" type="Email" id="Email" name="Email" required>
+                
+                <label class="form-label" for="password">Password:</label>
+                <input class ="form-label" type="password" id="password" name="password" required>
+                
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+    
+
+<!-- 
+     <!DOCTYPE html>
+     <html>
+     <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>User Profile</title>
+         <style>
+             body {
+                 margin: 0;
+                 padding: 0;
+                 font-family: Arial, sans-serif;
+                 background-color: #f4f4f4;
+             }
+     
+             header {
+                 background-color: #333;
+                 color: #fff;
+                 text-align: center;
+                 padding: 10px;
+             }
+     
+             .user-container {
+                 max-width: 600px;
+                 margin: 100px auto; /* Adjust the margin for centering */
+                 background-color: #007bff; /* Blue background color */
+                 border: 1px solid #ddd;
+                 border-radius: 5px;
+                 padding: 20px;
+                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                 color: #fff; /* White text color */
+             }
+     
+             .user-info {
+                 margin-bottom: 15px;
+             }
+     
+             /* ... Rest of your existing styles ... */
+     
+             .form-input {
+                 /* ... Your existing styles ... */
+                 background-color: #f9f9f9; /* Light gray background color */
+             }
+     
+             .save-button {
+                 /* ... Your existing styles ... */
+                 background-color: #4CAF50;
+                 color: white;
+                 border: none;
+                 padding: 10px 20px;
+                 border-radius: 5px;
+                 cursor: pointer;
+             }
+     
+             /* ... Rest of your existing styles ... */
+         </style>
+     </head>
+     <body>
+         <header>
+             <h1>User Profile</h1>
+         </header>
+     
+         <div class="user-container">
+             <h2>User Registration</h2>
+             <div class="user-info">
+                 <form method="post" action="{% url 'username' %}">
+                     {% csrf_token %}
+                     <label class="form-label" for="name">Name:</label>
+                     <input class="form-input" type="text" id="name" name="name" required>
+     
+                     <label class="form-label" for="email">Email:</label>
+                     <input class="form-input" type="email" id="email" name="email" required>
+     
+                     <label class="form-label" for="password">Password:</label>
+                     <input class="form-input" type="password" id="password" name="password" required>
+     
+                     <button class="save-button" type="submit">Register</button>
+                 </form>
+             </div>
+         </div>      --> 
+    <div class="links-container">
+        <h2>Quick Links</h2>
+        <a class="link" href="http://127.0.0.1:8000/ordertable/">
+            <img src="{% static 'img/order.png' %}" alt="Food Delivery Orders">
+        </a>
+        <!-- <img src="{% static 'first/images/order.jpg' %}" alt="Food Delivery Hero Image"/> -->
+        <a class="link" href="http://127.0.0.1:8000/create-payment/">
+            <img src="{% static 'img/payment.jpg' %}" alt="Food Delivery Orders">  
+              </a>
+        <a class="link" href="http://127.0.0.1:8000/notificationpage/">
+            <img src="{% static 'img/notifications.png' %}" alt="Food Delivery Orders">    
+            </a>
+    </div>
+
+    
+ 
+    <script>
+
+        const socket=new WebSocket(
+            "ws://"+ windows.location.host + "/ws/notifications/"
+
+        )
+
+        socket.onopen = () => {
+        console.log('WebSocket connection opened');
+    };
+            socket.onmessage = (event) => {const data = JSON.parse(event.data);
+
+                const message = data.message;
+                const orderNotificationList = document.getElementById('order-notification-list');
+                const paymentNotificationList = document.getElementById('payment-notification-list');
+
+
+
+
+            if (data.notification_type === 'order') {
+                const li = document.createElement('li');
+
+                li.textContent = message;
+
+                orderNotificationList.appendChild(li);
+
+                } else if (data.notification_type === 'payment') {
+
+                const li = document.createElement('li');
+
+                li.textContent = message;
+
+                paymentNotificationList.appendChild(li);
+
+            }
+
+
+
+            const notificationCount = parseInt(document.getElementById('notification-count').textContent);
+
+            document.getElementById('notification-count').textContent = notificationCount + 1;
+
+
+
+
+
+            };
+
+
+
+            // Handle WebSocket errors
+
+            socket.onerror = (error) => {
+
+            console.error("WebSocket Error:", error);
+
+            };
+
+
+
+            // Handle WebSocket close event
+
+            socket.onclose = (event) => {
+
+            if (event.wasClean) {
+
+            console.log(
+
+            `WebSocket closed cleanly, code=${event.code}, reason=${event.reason}`
+
+            );
+
+            } else {
+
+            console.error("WebSocket connection died");
+
+            }
+
+            };
+
+</script>
+    
+
+</body>
+</html> 
+
+<!-- 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* ... Existing CSS styles ... */
+        .links-container {
+            /* ... Existing styles ... */
+            text-align: center;
+        }
+        .link {
+            /* ... Existing styles ... */
+            display: inline-block;
+            margin: 10px;
+            text-decoration: none;
+        }
+        .link img {
+            width: 100px; /* Adjust the image size as needed */
+            height: auto;
+            border: none;
+            transition: transform 0.2s;
+        }
+        .link img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Profile</h1>
+    </header>
+
+    <div class="user-container">
+        <h2>User Registration</h2>
+        <div class="user-info">
+            <form method="post" action="{% url 'username' %}">
+                {% csrf_token %}
+                <label class="form-label" for="name">Name:</label>
+                <input class="form-input" type="text" id="name" name="name" required>
+
+                <label class="form-label" for="email">Email:</label>
+                <input class="form-input" type="email" id="email" name="email" required>
+
+                <label class="form-label" for="password">Password:</label>
+                <input class="form-input" type="password" id="password" name="password" required>
+
+                <button class="save-button" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="links-container">
+        <h2>Quick Links</h2>
+        <a class="link" href="http://127.0.0.1:8000/ordertable/">
+            <img src="order_image.jpg" alt="Food Delivery Orders">
+        </a>
+        <a class="link" href="http://127.0.0.1:8000/create-payment/">
+            <img src="payment_image.jpg" alt="Payment Page">
+        </a>
+        <a class="link" href="http://127.0.0.1:8000/notificationpage/">
+            <img src="notification_image.jpg" alt="Create Notification">
+        </a>
+    </div>
+
+    <div class="saved-info" id="savedInfo">
+        <!-- Saved user information will be displayed here -->
+    <!-- </div>
+    <script>
+
+        const socket=new WebSocket(
+            "ws://"+ windows.location.host + "/ws/notifications/"
+
+        )
+
+        socket.onopen = () => {
+        console.log('WebSocket connection opened');
+    };
+            socket.onmessage = (event) => {const data = JSON.parse(event.data);
+
+                const message = data.message;
+                const orderNotificationList = document.getElementById('order-notification-list');
+                const paymentNotificationList = document.getElementById('payment-notification-list');
+
+
+
+
+            if (data.notification_type === 'order') {
+                const li = document.createElement('li');
+
+                li.textContent = message;
+
+                orderNotificationList.appendChild(li);
+
+                } else if (data.notification_type === 'payment') {
+
+                const li = document.createElement('li');
+
+                li.textContent = message;
+
+                paymentNotificationList.appendChild(li);
+
+            }
+
+
+
+            const notificationCount = parseInt(document.getElementById('notification-count').textContent);
+
+            document.getElementById('notification-count').textContent = notificationCount + 1;
+
+
+
+
+
+            };
+
+
+
+            // Handle WebSocket errors
+
+            socket.onerror = (error) => {
+
+            console.error("WebSocket Error:", error);
+
+            };
+
+
+
+            // Handle WebSocket close event
+
+            socket.onclose = (event) => {
+
+            if (event.wasClean) {
+
+            console.log(
+
+            `WebSocket closed cleanly, code=${event.code}, reason=${event.reason}`
+
+            );
+
+            } else {
+
+            console.error("WebSocket connection died");
+
+            }
+
+            };
+
+</script>
+</body>
+</html> --> -->

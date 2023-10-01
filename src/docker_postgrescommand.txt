@@ -1,0 +1,15 @@
+docker ps
+
+docker exec -it docker_name sh
+
+psql -U postgres
+
+\l #list of database
+
+\c database_name 
+
+\dt #list all the tables of database
+
+SELECT *from table_name;
+
+

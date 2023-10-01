@@ -1,0 +1,7 @@
+@echo off
+
+REM Change directory to the folder containing your docker-compose.yml file
+cd /d "D:\New folder\New\src"
+
+REM Run docker-compose up in detached mode (add -d if you want it to run in the background)
+docker-compose up

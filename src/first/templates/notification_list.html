@@ -1,0 +1,266 @@
+<!-- {% block content %}
+<h1>Notification List</h1>
+<u1>
+    {% for notification in notifications %}
+    <li>
+        <strong>Order ID:</strong>{{notification.order_id.order_id}}</br>
+        <strong>User ID:</strong>{{notification.user_id.user_id}}</br>
+        <strong>payment ID:</strong>{{notification.payment_id.payment_id}}</br>
+        <strong>Notification text:</strong>{{notification.notification_text}}</br>
+        <strong>Notification Created Time:</strong>{{notification.created_at}}</br>
+
+    </li>
+    {%empty%}
+    <li>No Notification</li>
+    {% endfor %}
+
+</u1>
+{% endblock %} -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Notification List</h1>
+    </header>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User ID</th>
+                    <th>Payment ID</th>
+                    <th>Notification Text</th>
+                    <th>Created Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for notification in notifications %}
+                <tr>
+                    <td>{{ notification.order_id.order_id }}</td>
+                    <td>{{ notification.user_id.user_id }}</td>
+                    <td>{{ notification.payment_id.payment_id }}</td>
+                    <td>{{ notification.notification_text }}</td>
+                    <td>{{ notification.created_at }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No Notification</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #324b26;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #7e4040;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+            font-family: 'Tahoma', sans-serif;
+        }
+        th {
+            background-color: #687951;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Notification List</h1>
+    </header>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User ID</th>
+                    <th>Payment ID</th>
+                    <th>Notification Text</th>
+                    <th>Created Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for notification in notifications %}
+                <tr>
+                    <td>{{ notification.order_id}}</td>
+                    <td>{{ notification.user_id }}</td>
+                    <td>{{ notification.payment_id }}</td>
+                    <td>{{ notification.notification_text }}</td>
+                    <td>{{ notification.created_at }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No Notification</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+
+        const socket=new WebSocket(
+            "ws://"+ windows.location.host + "/ws/notifications/"
+
+        )
+
+        socket.onopen = () => {
+        console.log('WebSocket connection opened');
+    };
+            socket.onmessage = (event) => {const data = JSON.parse(event.data);
+
+                const message = data.message;
+                const orderNotificationList = document.getElementById('order-notification-list');
+                const paymentNotificationList = document.getElementById('payment-notification-list');
+
+
+
+
+            if (data.notification_type === 'order') {
+                const li = document.createElement('li');
+
+                li.textContent = message;
+
+                orderNotificationList.appendChild(li);
+
+                } else if (data.notification_type === 'payment') {
+
+                const li = document.createElement('li');
+
+                li.textContent = message;
+
+                paymentNotificationList.appendChild(li);
+
+            }
+
+
+
+            const notificationCount = parseInt(document.getElementById('notification-count').textContent);
+
+            document.getElementById('notification-count').textContent = notificationCount + 1;
+
+
+
+
+
+            };
+
+
+
+            // Handle WebSocket errors
+
+            socket.onerror = (error) => {
+
+            console.error("WebSocket Error:", error);
+
+            };
+
+
+
+            // Handle WebSocket close event
+
+            socket.onclose = (event) => {
+
+            if (event.wasClean) {
+
+            console.log(
+
+            `WebSocket closed cleanly, code=${event.code}, reason=${event.reason}`
+
+            );
+
+            } else {
+
+            console.error("WebSocket connection died");
+
+            }
+
+            };
+</script>
+</body>
+</html>

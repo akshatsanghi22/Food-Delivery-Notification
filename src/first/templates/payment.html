@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .payment-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-info {
+            margin-bottom: 15px;
+        }
+
+        .notification-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Payment Page</h1>
+    </header>
+
+    <div class="payment-container">
+        <div class="payment-info">
+            <h2>Payment ID: 9876</h2>
+            <p>User ID: 12345</p>
+            <p>Payment Status: Successful</p>
+        </div>
+        <button class="notification-button" onclick="goToNotificationPage()">Go to Notification Page</button>
+    </div>
+
+    <script>
+        function goToNotificationPage() {
+            // You can implement the logic to redirect to the notification page here
+            // For example:
+            window.location.href = "notification.html";
+        }
+    </script>
+</body>
+</html>

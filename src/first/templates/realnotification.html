@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="text-center">
+        <h1 class="text-center">Notification App</h1>
+        <p id="no-notifications">No New Notifications</p>
+    </div>
+    <div id="notifications">
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toasts">
+    </div>
+</div>
+  
+{% endblock %}
+
+{% block script %}
+
+<script>
+    $(document).ready(function(){
+        const websocket = new WebSocket("ws://{{ request.get_host }}/ws/notifications");
+        websocket.onmessage = function(response){
+            $("#no-notifications").hide();
+            let data = JSON.parse(response.data);
+            let notification = `
+                <div class="container d-flex justify-content-center">
+                    <div class="card mt-5 p-3">
+                        <div class="notification row">
+                            <div class="notification-body col-10">
+                                <h6 class="mt-2 mb-0">${data.title}</h6>
+                                <small class="text">${data.body}</small>
+                            </div>
+                            <div class="col-2 x-button">X</div>
+                        </div>
+                    </div>
+                </div>
+            `
+            let toast = `
+            <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                <svg class=" rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                    <rect fill="#007aff" width="100%" height="100%" /></svg>
+                <strong class="me-auto">${data.title}</strong>
+                <small>now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    ${data.body}
+                </div>
+            </div>
+            `
+            $("#notifications").prepend(notification);
+            $("#toasts").append(toast);
+            $(".toast").toast().show();
+        }
+    });
+    $(document).on("click", ".x-button", function(){
+        $(this).parentsUntil("#notifications").remove();
+        if($("#notifications").children().length == 0 ){
+            $("#no-notifications").show();
+        }
+    });
+    $(document).on("click", ".btn-close", function(){
+        $(this).parentsUntil("#toasts").remove();
+    });
+</script>
+
+{% endblock %}

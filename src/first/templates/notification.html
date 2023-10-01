@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Panel</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        #notification-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #notification-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #notification-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        #notification-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="notification-panel">
+        <button id="notification-button">Show Notifications</button>
+        <ul id="notification-list"></ul>
+    </div>
+
+    <img src="online.jpg" alt="Image">
+
+    <script>
+        const notificationButton = document.getElementById("notification-button");
+        const notificationList = document.getElementById("notification-list");
+
+        notificationButton.addEventListener("click", function() {
+            const notification = document.createElement("li");
+            notification.textContent = "This is a sample notification.";
+            notificationList.appendChild(notification);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Notification Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .notification {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            // Handle the received data, e.g., update the page with new notification
+            const notificationDiv = document.createElement('div');
+            notificationDiv.className = 'notification';
+            notificationDiv.innerHTML = `
+                <strong>Notification ID:</strong> ${data.notification_id}<br>
+                <strong>User ID:</strong> ${data.user_id}<br>
+                <strong>Order ID:</strong> ${data.order_id}<br>
+                <strong>Payment ID:</strong> ${data.payment_id}<br>
+            `;
+            document.querySelector('.container').appendChild(notificationDiv);
+        };
+    </script>
+    <div class="container">
+        <h2>Notifications</h2>
+        {% for notification in notifications %}
+            <div class="notification">
+                <strong>Notification ID:</strong> {{ notification.notification_id }}<br>
+                <strong>User ID:</strong> {{ notification.user_id }}<br>
+                <strong>Order ID:</strong> {{ notification.order_id }}<br>
+                <strong>Payment ID:</strong> {{ notification.payment_id }}<br>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notification Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const socket = new WebSocket('ws://http://127.0.0.1:8000//ws/notifications/');
+
+            socket.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                const notificationDiv = document.createElement('div');
+                notificationDiv.className = 'notification';
+                notificationDiv.innerHTML = `
+                    <strong>User ID:</strong> ${data.user_id}<br>
+                    <strong>Order ID:</strong> ${data.order_id}<br>
+                    <strong>Payment ID:</strong> ${data.payment_id}<br>
+                `;
+                document.querySelector('.container').appendChild(notificationDiv);
+            };
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Notifications</h2>
+        <!-- Notifications will be added dynamically here -->
+    </div>
+</body>
+</html>

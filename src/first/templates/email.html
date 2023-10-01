@@ -1,0 +1,147 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Email Notification</title>
+</head>
+
+<body>
+    <div class="w-[1100px] mx-auto py-10">
+        <form action="." method="post">
+            {% csrf_token %}
+            {% if data %}
+            <h1 class="w-fit bg-green-300 py-1 px-7  rounded-xl text-center mx-auto mb-10 ">{{data}}</h1>
+            {% endif %}
+            <div class="w-80 mx-auto space-y-3">
+                <label for="email" class="block text-sm font-medium text-gray-700 ml-1">Email Id</label>
+                <div class="mt-1"></div>
+
+                <input type="email" name="email_id" id="email"
+                    class="block w-full rounded-md border text-center h-10 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    placeholder="you@example.com" aria-describedby="email-description" required>
+                <input type="submit" value="submit"
+                    class="w-fit px-3 mx-auto border bg-blue-400 rounded-md border-gray-400">
+            </div>
+        </form>
+    </div>
+    </div>
+</body>
+</html> -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Notification To User</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'img/online.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .content {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Added box shadow for the content */
+        }
+
+        form {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Added box shadow for the form */
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .success-message {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Send Email</h1>
+    </header>
+
+    <div class="content">
+        <form action="." method="post">
+            {% csrf_token %}
+            {% if data %}
+            <div class="success-message">{{ data }}</div>
+            {% endif %}
+            <label for="email">Email Id</label>
+            <input type="email" name="email_id" id="email" placeholder="you@example.com" required>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <footer>
+        &copy; 2023 TastyBites. All Rights Reserved.
+    </footer>
+</body>
+
+</html>

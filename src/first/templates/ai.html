@@ -1,0 +1,284 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery Notifications</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'img/' %}");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5); 
+        
+            
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem;
+            background-color: #333;
+
+        }
+
+        main {
+            display: flex;
+            
+            align-items: center;
+            height: calc(150vh - 180px); /* Adjust for header and footer heights */
+            justify-content: center;
+        }
+
+        section {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        .center-content {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 800px; /* Adjust the width as needed */
+        }
+
+        .center-content form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+        }
+        .links-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+        }
+
+        input {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #E64A19;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .footer-item {
+            flex: 1;
+            text-align: center;
+        }
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #6d0000;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+            color: white;
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar .closebtn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .openbtn {
+            background-color: #ff0000;
+            color: white;
+            padding: 20px 30px;
+            border: none;
+            cursor: pointer;
+            position: fixed;
+            z-index: 2;
+            top: 10px;
+            left: 10px;
+            border-radius: 5px;
+        }
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+
+
+    </style>
+</head>
+<body>
+    <video autoplay loop muted poster="{% static 'img/online1.jpg' %}">
+        <source src="{% static 'img/abc.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <header>
+        <h1>Food Delivery Notifications</h1>
+    </header>
+    <main>
+        <section class="center-content">
+            <h2>User Registration</h2>
+            <form method="post" action="{% url 'username' %}">
+                {% csrf_token %}
+
+                <label class="form-label" for="name">Name:</label>
+                <input class ="form-label" type="text" id="name" name="name" required>
+                
+                <label class="form-label" for="Email">Email:</label>
+                <input class ="form-label" type="Email" id="Email" name="Email" required>
+                
+                <label class="form-label" for="password">Password:</label>
+                <input class ="form-label" type="password" id="password" name="password" required>
+                
+                <button type="submit">Register</button>
+            </form>
+        </section>
+        
+        <section>
+            <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
+
+            <div id="mySidebar" class="sidebar">
+
+                <h2>Quick Links</h2>
+                <a class="link" href="http://127.0.0.1:8000/ordertable/">
+                    <img src="{% static 'img/order.png' %}" alt="Food Delivery Orders" width="150" height="150">
+                Orders
+                </a>
+                <!-- <img src="{% static 'first/images/order.jpg' %}" alt="Food Delivery Hero Image"/> -->
+                <a class="link" href="http://127.0.0.1:8000/create-payment/">
+                    <img src="{% static 'img/payment.jpg' %}" alt="Food Delivery Payment" width="150" height="150">  
+                Payment    
+                </a>
+                <a class="link" href="http://127.0.0.1:8000/send-email/">
+                    <img src="{% static 'img/email1.jpg' %}" alt="Food Delivery Email" width="150" height="150">    
+                Email    
+                </a>  
+                <a class="link" href="http://127.0.0.1:8000/notificationpage/">
+                    <img src="{% static 'img/notifications.png' %}" alt="Food Delivery Notification" width="150" height="150">     
+                Notification
+                    </a>
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    
+            </div>
+            <script>
+                function openNav() {
+                    document.getElementById("mySidebar").style.width = "250px";
+                    document.getElementById("main").style.marginLeft = "250px";
+
+                }
+        
+                function closeNav() {
+                    document.getElementById("mySidebar").style.width = "0";
+                    document.getElementById("main").style.marginLeft= "0";
+                }
+            </script>
+        </main>
+            
+        </section>
+
+    <footer>
+        <div class="footer-row">
+            <div class="footer-item">
+                <p>Phone Number: +91 6456-7890</p>
+            </div>
+            <div class="footer-item">
+                <p>Location: Tasty Bites Malviya Nagar Jaipur</p>
+            </div>
+        </div>
+        <div class="footer-row">
+            <div class="footer-item">
+                <p>Services: Food Delivery</p>
+            </div>
+            <div class="footer-item">
+                <p>Insights: Food Trends</p>
+            </div>
+        </div>
+        <div class="footer-row">
+            <div class="footer-item">
+                <p>More Info: <a href="#">Learn More</a></p>
+            </div>
+        </div>
+        <div class="footer-row">
+            <div class="footer-item">
+                <p>&copy; 2023 Food Delivery Notifications</p>
+            </div>
+        </div>
+   
+    </footer>
+</body>
+</html>

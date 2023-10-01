@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .user-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        .save-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .saved-info {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .links-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .link {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .link:hover {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Profile</h1>
+    </header>
+
+    <div class="user-container">
+        <div class="user-info">
+            <h2>Enter Your Details</h2>
+            <form id="user-form">
+                <label class="form-label" for="name">Name:</label>
+                <input class="form-input" type="text" id="name" required>
+
+                <label class="form-label" for="userId">User ID:</label>
+                <input class="form-input" type="text" id="userId" required>
+
+                <label class="form-label" for="email">Email:</label>
+                <input class="form-input" type="email" id="email" required>
+
+                <button class="save-button" type="button" onclick="saveUserDetails()">Save</button>
+            </form>
+        </div>
+        <div class="saved-info" id="savedInfo">
+            <!-- Saved user information will be displayed here -->
+        </div>
+    </div>
+
+    <div class="links-container">
+        <h2>Quick Links</h2>
+        <a class="link" href="http://127.0.0.1:8000/orders/">Food Delivery Orders</a>
+        <a class="link" href="http://127.0.0.1:8000/payment/">Payment Page</a>
+    </div>
+
+    <script>
+        function saveUserDetails() {
+            const name = document.getElementById("name").value;
+            const userId = document.getElementById("userId").value;
+            const email = document.getElementById("email").value;
+
+            // Display saved user information
+            const savedInfo = document.getElementById("savedInfo");
+            savedInfo.innerHTML = `
+                <h2>Saved User Information</h2>
+                <p>Name: ${name}</p>
+                <p>User ID: ${userId}</p>
+                <p>Email: ${email}</p>
+            `;
+
+            // You can implement the logic to save the user details to a database or storage here
+        }
+    </script>
+</body>
+</html>

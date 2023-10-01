@@ -1,0 +1,5 @@
+docker run --name app -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=1234 -e POSTGRES_DB=django_notification2 -p 5433:5433 postgres
+
+
+docker build --tag python-django .
+docker run --publish 8000:8000 python-django 
